@@ -19,8 +19,9 @@ public class CurrencyExchangeController {
 	private ExchangeValueRepository repository;
 
 	@GetMapping("/currency-exchange/from/{from}/to/{to}")
-	public ExchangeValue retrieveExchangeValue
-			(@PathVariable String from, @PathVariable String to){
+	public ExchangeValue retrieveExchangeValue(@PathVariable String from, @PathVariable String to){
+
+		logger.info("Currency Exchange Service method In ... ");
 
 		ExchangeValue exchangeValue =
 				repository.findByFromAndTo(from, to);
@@ -29,6 +30,7 @@ public class CurrencyExchangeController {
 				Integer.parseInt(environment.getProperty("local.server.port")));
 
 		logger.info("{}", exchangeValue);
+		logger.info("Currency Exchange Service method Out ... ");
 
 		return exchangeValue;
 	}
